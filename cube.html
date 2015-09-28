@@ -26,9 +26,9 @@
             height: 200px;
             width: 200px;
             transform-style: preserve-3d;
-            transform: rotateY(0deg) rotateX(0deg) translateZ(100px);
+            transform: rotateY(0deg) rotateX(0deg)  translateZ(-100px);;
             animation: rotating 5s infinite linear;
-            transform-origin: 50% 50% -100px;
+            /*transform-origin: 50% 50% -100px;*/
         }
         @keyframes rotating {
             0% {transform: rotateY(0deg) rotateX(0deg);width: 0;height: 0}
@@ -55,27 +55,27 @@
         }
         .face-front{
             background-color: red;
-            transform: rotateY(0deg) translateZ(0px);
+            transform: rotateY(0deg) translateZ(100px);
         }
         .face-back{
             background-color: yellow;
-            transform: rotateY(0deg) translateZ(-200px);
+            transform: rotateY(0deg) translateZ(-100px);
         }
         .face-left{
             background-color: green;
-            transform: rotateY(90deg) translateY(0px) translateZ(-100px) translateX(100px);
+            transform: rotateY(90deg) translateZ(100px);
         }
         .face-right{
             background-color: deeppink;
-            transform: rotateY(90deg) translateZ(100px) translateX(100px);
+            transform: rotateY(90deg) translateZ(-100px);
         }
         .face-top{
             background-color: orangered;
-            transform: rotateX(90deg) translateZ(100px) translateY(-100px);
+            transform: rotateX(90deg) translateZ(100px);
         }
         .face-bottom{
             background-color: purple;
-            transform: rotateX(90deg) translateZ(-100px) translateY(-100px);
+            transform: rotateX(90deg) translateZ(-100px);
         }
 
     </style>
