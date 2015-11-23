@@ -1,0 +1,52 @@
+$bgBlack : #555555;
+$bgYellow : #ffcc00;
+$btnBlack : rgba(0,0,0,0.5);
+$color : darkorange;
+
+@mixin fontShadow(){
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.8);
+  -webkit-text-shadow: 1px 1px 1px rgba(0,0,0,0.8);;
+}
+html,body{
+  position: relative;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+}
+.container{
+  height: 100%;
+  background-color: $bgBlack;
+  overflow: hidden;
+  padding: 10px;
+}
+.top{
+  position: relative;
+  min-height: 100px;
+}
+.wrap{
+  position: relative;
+  margin: 0 auto;
+  padding-top: 10px;
+  background-color: $bgBlack;
+  //height: 100%;
+  font-size: 1.5em;
+  text-align: center;
+}
+.wrap *{
+  margin: 0;
+  padding: 0;
+}
+.md{
+  display: inline-block;
+  font-size: 1.4em;
+  background-color: $btnBlack;
+  border: 0 solid lighten($bgYellow,10%);
+  outline: none;
+  color: $color;
+  margin: 1px;
+  transition: all 0.5s;
+  @include fontShadow()
+}
+.md:active{
+  background-color: red;
+}

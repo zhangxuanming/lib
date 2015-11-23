@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+<head>
+    <meta charset = "UTF-8">
+    <!--<meta name="viewport" content="target-densitydpi=device-dpi,width=640,width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">-->
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=device-width">
+    <title>Matrix</title>
+    <link href="./css/matrix.css" rel="stylesheet">
+
+    <script src="./js/jquery-2.1.4.min.js"></script>
+    <script src="./js/underscore.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="top" style="text-align: center">
+            <div style="width: 200px;height:100px;background-color: red">123231231</div>
+        </div>
+        <div class="wrap">
+        </div>
+    </div>
+</body>
+<script>
+    $(document).ready(function(e){
+        var words = String('美国已知会其亚洲盟友该国军舰驶入南海的具体计划对此菲律宾官员表示菲方已于近日得知美国的计划菲律宾参议院国防和安全委员会主席安东尼奥特里兰尼斯四世对美国的这一计划表示欢迎').split("");
+        var $wrap = $('.wrap')
+            ,$divs = ''
+            ,screenSize = window.innerWidth;
+        var wrapSize = {
+            width:$wrap.width(),
+            height:$wrap.height()
+        };
+        function getChars(arr){
+            return arr[_.random(0,arr.length-1)];
+        }
+        function getBlockSize(containerSize){
+            var _blockQty = 6
+                ,_margin = 2
+                ,_padding = 0
+                ,_bw = 0
+                ,_bh = 0
+                ,_baseWidth;
+            _baseWidth = screen.width < screen.height ? containerSize.width : containerSize.height;
+            _bw = (_baseWidth -  Math.floor(_baseWidth % 10)) / _blockQty - _margin*2 - _padding*2;
+            _bh = _bw;
+            return {
+                width :_bw,
+                height:_bh
+            }
+        }
+        btnSize = getBlockSize(wrapSize);
+        for (var i=0;i<30;i++){
+            $divs += '<button class="md" data-index="'+i+'" style="width:'+btnSize.width+'px;height:'+btnSize.height+'px">'+getChars(words)+'</button>';
+        }
+        $wrap.append($divs);
+    });
+</script>
+</html>

@@ -1,0 +1,52 @@
+html, body {
+  position: relative;
+  height: 100%; }
+
+.wrap {
+  position: relative;
+  background-color: #333333;
+  height: 100%;
+  width: 100%; }
+
+header {
+  background-color: gold;
+  color: #333; }
+  header h1 {
+    margin: 0;
+    padding: 0;
+    text-align: center; }
+
+.center {
+  position: relative;
+  margin: 0 auto;
+  left: 0;
+  right: 0; }
+
+.clockwrap {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+  padding: 10%; }
+
+.clock {
+  position: relative;
+  width: 30%;
+  height: 20px;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform: rotateY(45deg) rotateX(-40deg);
+  transition: all 0.5s; }
+  .clock div {
+    position: absolute;
+    border: 1px solid aqua;
+    opacity: 1;
+    text-align: center;
+    line-height: 100%;
+    font-size: 1.5em; }
+
+@keyframes aa {
+  0% {
+    transform: rotateX(0deg) rotateY(0deg); }
+  100% {
+    transform: rotateX(360deg) rotateY(360deg); } }
+
+/*# sourceMappingURL=app.css.map */
