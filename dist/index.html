@@ -100,7 +100,8 @@
 //                $('.front').css({
 //                    'transform': 'translateZ('+ (clockWidth/2)+'px)'
 //                });
-                TweenMax.set($('.front'),{transform: 'translateZ('+ clockWidth/2 +'px)'});
+//                TweenMax.set($('.front'),{transform: 'translateZ('+ clockWidth/2 +'px)'});
+                TweenMax.set($('.front'),{z: clockWidth/2});
                 $('.back').css({
                     'transform': 'translateZ('+ (-clockWidth/2)+'px) rotateY(180deg)'
                 });
