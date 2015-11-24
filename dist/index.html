@@ -97,26 +97,12 @@
                     });
                 };
                 setClockColor();
-//                $('.front').css({
-//                    'transform': 'translateZ('+ (clockWidth/2)+'px)'
-//                });
-//                TweenMax.set($('.front'),{transform: 'translateZ('+ clockWidth/2 +'px)'});
                 TweenMax.set($('.front'),{z: clockWidth/2});
-                $('.back').css({
-                    'transform': 'translateZ('+ (-clockWidth/2)+'px) rotateY(180deg)'
-                });
-                $('.top').css({
-                    'transform': 'translateY('+ (-clockWidth/2)+'px) rotateX(90deg)'
-                });
-                $('.bottom').css({
-                    'transform': 'translateY('+ (clockWidth/2)+'px) rotateX(-90deg)'
-                });
-                $('.left').css({
-                    'transform': 'translateX('+ (-clockWidth/2)+'px) rotateY(-90deg)'
-                });
-                $('.right').css({
-                    'transform': 'translateX('+ (clockWidth/2)+'px) rotateY(90deg)'
-                });
+                TweenMax.set($('.back'),{z: -clockWidth/2,rotationY:180});
+                TweenMax.set($('.top'),{y: -clockWidth/2,rotationX:90});
+                TweenMax.set($('.bottom'),{y: clockWidth/2,rotationX:-90});
+                TweenMax.set($('.left'),{x: -clockWidth/2,rotationY:-90});
+                TweenMax.set($('.right'),{x: clockWidth/2,rotationY:90});
             });
             var _n = 0;
             var _d = {
