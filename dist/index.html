@@ -79,17 +79,23 @@
                     clockWidth = $(this).width();
                     return clockWidth;
                 });
+                $('.clockwrap').click(function(){
+                   setClockColor();
+                });
                 var $clockDiv = $('.clock div');
                 $clockDiv.width(clockWidth).height(clockWidth);
-                $.each($clockDiv,function(i,v){
-                    var rgb = getRgbColor(0.85);
-                   $(v).css({
-                       'background-color':rgb.rgba,
-                       'color':rgb.crgba,
-                       'box-shadow': '0 0 50px 0 ' + getRgbColor(0.9).rgba,
-                       'line-height':clockWidth+'px'
-                   });
-                });
+                var setClockColor = function(){
+                    $.each($clockDiv,function(i,v){
+                        var rgb = getRgbColor(0.85);
+                        $(v).css({
+                            'background-color':rgb.rgba,
+                            'color':rgb.crgba,
+                            'box-shadow': '0 0 50px 0 ' + getRgbColor(0.9).rgba,
+                            'line-height':clockWidth+'px'
+                        });
+                    });
+                };
+                setClockColor();
                 $('.front').css({
                     'transform': 'translateZ('+ (clockWidth/2)+'px)'
                 });
@@ -118,7 +124,6 @@
                 el:'.clockwrap',
                 data:_d
             });
-console.log(window);
             var ft = function(){
                 var _st = setTimeout(function(){
                     ft();
@@ -134,7 +139,6 @@ console.log(window);
                 var _lt = function(){
                     var t = new Date();
                     var s = t.getHours()+':'+ t.getMinutes()+":"+ t.getSeconds();
-//                    return new Date().toLocaleTimeString({},{hour12:false});//.replace(/..$/,'')
                     return s;
                 };
                 _d = {
