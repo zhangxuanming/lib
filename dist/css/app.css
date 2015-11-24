@@ -35,8 +35,8 @@ header {
   height: 20px;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transition: all 0.5s;
-  -webkit-transition: all 0.5s ease-in; }
+  transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear; }
   .clock div {
     position: absolute;
     border: 1px solid aqua;
