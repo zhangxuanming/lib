@@ -28,13 +28,13 @@
                 <h1>Cube Clock</h1>
             </header>
             <div class="clockwrap" style="background: #222222;min-height: 50px">
-                <div class="clock center">
-                    <div class="front">{{msg}}</div>
-                    <div class="back">{{msg}}</div>
-                    <div class="left">{{msg}}</div>
-                    <div class="right">{{msg}}</div>
-                    <div class="top">{{msg}}</div>
-                    <div class="bottom">{{msg}}</div>
+                <div class="clock center" v-bind:style="clockStyleObj">
+                    <div class="front"><span>{{localTime}}</span></div>
+                    <div class="back"><span>{{localTime}}</span></div>
+                    <div class="left"><span>{{localTime}}</span></div>
+                    <div class="right"><span>{{localTime}}</span></div>
+                    <div class="top"><span>{{localTime}}</span></div>
+                    <div class="bottom"><span>{{localTime}}</span></div>
                 </div>
             </div>
         </div>
@@ -44,8 +44,33 @@
         <script src="js/plugins.js"></script>
         <script src="js/main.js"></script>
         <script>
-            function getRandomInt(min, max) {
-                return Math.floor(Math.random() * (max - min)) + min;
+
+            function getRandomInt(min, max,ev) {
+                var num =  Math.floor(Math.random() * (max - min)) + min;
+                switch (ev){
+                    case 'even':
+                        num = (num%2 == 1) ? num+1 : num;
+                        break;
+                    case 'odd':
+                        num = (num%2 == 0) ? num+1 : num;
+                        break;
+                    default :
+                        break;
+                }
+                return num;
+            }
+            function getRgbColor(optical){
+                optical = optical || 1;
+                var _r = getRandomInt(20,255);
+                var _g = getRandomInt(20,255);
+                var _b = getRandomInt(20,255);
+                return {
+                    r:_r,
+                    g:_g,
+                    b:_b,
+                    rgba:'rgba('+_r+','+_g+','+_b+','+optical+')',
+                    crgba:'rgba('+(255-_r)+','+(255-_g)+','+(255-_b)+',1)'
+                }
             }
             $(document).ready(function(){
                 //设置高度
@@ -57,17 +82,16 @@
                 var $clockDiv = $('.clock div');
                 $clockDiv.width(clockWidth).height(clockWidth);
                 $.each($clockDiv,function(i,v){
-                    var r = getRandomInt(0,255);
-                    var g = getRandomInt(0,255);
-                    var b = getRandomInt(0,255);
+                    var rgb = getRgbColor(0.85);
                    $(v).css({
-                       'background-color':'rgba('+r+','+g+','+b+',0.8)',
-                       'box-shadow': '0 0 50px 0 ' +'rgba('+r+','+g+','+b+',1)',
+                       'background-color':rgb.rgba,
+                       'color':rgb.crgba,
+                       'box-shadow': '0 0 50px 0 ' + getRgbColor(0.9).rgba,
                        'line-height':clockWidth+'px'
                    });
                 });
                 $('.front').css({
-                    'transform': 'translateZ('+ (clockWidth/2)+'px)',
+                    'transform': 'translateZ('+ (clockWidth/2)+'px)'
                 });
                 $('.back').css({
                     'transform': 'translateZ('+ (-clockWidth/2)+'px) rotateY(180deg)'
@@ -87,18 +111,14 @@
             });
             var _n = 0;
             var _d = {
-                msg:123,
+                localTime:123,
                 txt:456
             };
             var v = new Vue({
                 el:'.clockwrap',
                 data:_d
             });
-
-            Vue.filter('testf',function(v){
-                return v*100;
-            });
-
+console.log(window);
             var ft = function(){
                 var _st = setTimeout(function(){
                     ft();
@@ -108,14 +128,17 @@
                 if(_n>=60){
                     _n = 0;
                 }
-                var deg = getRandomInt(1,10);
+                var deg = getRandomInt(-4,4);
                 var XY = _n%2 == 0 ? 'rotateX('+deg*90+'deg)':'rotateY('+deg*90+'deg)';
-                $('.clock').css({
-                   'transform':XY
-                });
+//                var XY = _n%2 == 0 ? 'rotateX(0deg) rotateY(0deg)':'rotateX('+deg*90+'deg)rotateY('+deg*90+'deg)';
+                var _lt = function(){
+                    return new Date().toLocaleTimeString({},{hour12:false});//.replace(/..$/,'')
+                };
                 _d = {
-                    msg: new Date().toLocaleTimeString(),
-                    txt:_n
+                    localTime: _lt(),
+                    clockStyleObj:{
+                        'transform':XY
+                    }
                 };
                 v.$data = _d;
             };

@@ -29,11 +29,10 @@ header {
 
 .clock {
   position: relative;
-  width: 30%;
+  width: 20%;
   height: 20px;
   transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
-  transform: rotateY(45deg) rotateX(-40deg);
   transition: all 0.5s; }
   .clock div {
     position: absolute;
