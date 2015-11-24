@@ -11,7 +11,8 @@ html, body {
 
 header {
   background-color: gold;
-  color: #333; }
+  color: #333;
+  margin-bottom: 5em; }
   header h1 {
     margin: 0;
     padding: 0;
