@@ -132,7 +132,10 @@ console.log(window);
                 var XY = _n%2 == 0 ? 'rotateX('+deg*90+'deg)':'rotateY('+deg*90+'deg)';
 //                var XY = _n%2 == 0 ? 'rotateX(0deg) rotateY(0deg)':'rotateX('+deg*90+'deg)rotateY('+deg*90+'deg)';
                 var _lt = function(){
-                    return new Date().toLocaleTimeString({},{hour12:false});//.replace(/..$/,'')
+                    var t = new Date();
+                    var s = t.getHours()+':'+ t.getMinutes()+":"+ t.getSeconds();
+//                    return new Date().toLocaleTimeString({},{hour12:false});//.replace(/..$/,'')
+                    return s;
                 };
                 _d = {
                     localTime: _lt(),
