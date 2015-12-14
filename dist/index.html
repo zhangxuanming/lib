@@ -25,14 +25,16 @@
             <header>
                 <h1>Cube Clock</h1>
             </header>
-            <div class="clockwrap" style="background: #222222;min-height: 50px;top:30%">
-                <div class="clock center" v-bind:style="clockStyleObj">
-                    <div class="front"><span>{{localTime}}</span></div>
-                    <div class="back"><span>{{localTime}}</span></div>
-                    <div class="left"><span>{{localTime}}</span></div>
-                    <div class="right"><span>{{localTime}}</span></div>
-                    <div class="top"><span>{{localTime}}</span></div>
-                    <div class="bottom"><span>{{localTime}}</span></div>
+            <div class="middle">
+                <div class="clockwrap" style="background: #222222;min-height: 50px;top:30%">
+                    <div class="clock center" v-bind:style="clockStyleObj">
+                        <div class="front"><span>{{localTime}}</span></div>
+                        <div class="back"><span>{{localTime}}</span></div>
+                        <div class="left"><span>{{localTime}}</span></div>
+                        <div class="right"><span>{{localTime}}</span></div>
+                        <div class="top"><span>{{localTime}}</span></div>
+                        <div class="bottom"><span>{{localTime}}</span></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -74,12 +76,13 @@
                 }
             }
             $(document).ready(function(){
-                //设置高度
                 var clockWidth = 0;
-                $('.clock').height(function(){
+                //设置高度
+                $('.clockwrap').height(function(){
                     clockWidth = $(this).width();
                     return clockWidth;
                 });
+
                 $('.wrap').click(function(){
                    setClockColor();
                 });
@@ -87,11 +90,11 @@
                 $clockDiv.width(clockWidth).height(clockWidth);
                 var setClockColor = function(){
                     $.each($clockDiv,function(i,v){
-                        var rgb = getRgbColor(0.85);
+                        var rgb = getRgbColor(0.5);
                         $(v).css({
                             'background-color':rgb.rgba,
                             'color':rgb.crgba,
-                            'box-shadow': '0 0 50px 0 ' + getRgbColor(0.9).rgba,
+                            'box-shadow': '0 0 50px 0 ' + getRgbColor(0.7).rgba,
                             'line-height':clockWidth+'px'
                         });
                     });
@@ -106,13 +109,14 @@
             });
             var _n = 0;
             var _d = {
-                localTime:123,
-                txt:456
+                localTime:0,
+                clockStyleObj:{}
             };
             var v = new Vue({
                 el:'.clockwrap',
                 data:_d
             });
+
             var ft = function(){
                 var _st = setTimeout(function(){
                     ft();
